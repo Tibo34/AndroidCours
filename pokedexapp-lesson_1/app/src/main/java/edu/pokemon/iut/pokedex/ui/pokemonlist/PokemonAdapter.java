@@ -54,13 +54,14 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
         Pokemon pokemon = dataSet.get(position);
 
         // TODO 5) RECUPERER VIA LE HOLDER LA TEXTVIEW
-        TextView pokemonName = holder.textView;
+        TextView pokemonId= holder.textViewPokemonId;
+        TextView pokemonName = holder.textViewPokemonName;
         ImageView image=holder.imageView;
 
         // TODO 6) INSERER LE NOM DU POKEMON DANS LA TEXTVIEW
-        String uriSprite=pokemon.getSprites().getFrontDefault();
-
-        pokemonName.setText(pokemon.getId()+" : "+pokemon.getName());
+        String uriSprite=pokemon.getSpritesString();
+        pokemonId.setText(pokemon.getId());
+        pokemonName.setText(pokemon.getName());
         Glide.with(context).load(uriSprite).into(image);
     }
 
@@ -88,12 +89,14 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //TODO 3) DECLARER ICI UNE VARIABLE POUR LA TEXTVIEW
 
-        TextView textView;
+        TextView textViewPokemonName;
+        TextView textViewPokemonId;
         ImageView imageView;
         ViewHolder(View v) {
             super(v);
             //TODO 4) RECUPERER ICI UNE INSTANCE DE LA TEXTVIEW ET LA SAUVEGARGER DANS LA VARIABLE
-            textView=v.findViewById(R.id.pokemon_name);
+            textViewPokemonName=v.findViewById(R.id.pokemon_name);
+            textViewPokemonId=v.findViewById(R.id.pokemon_id);
             imageView=v.findViewById(R.id.pokemon_Image);
         }
     }
